@@ -2,21 +2,85 @@
 " Description: Optimized for C/C++ development
 "
 
+""""""""""""""""""""
+" LEADER KEY BEGIN "
+""""""""""""""""""""
+map <space> <leader>
+
+" Resize vertical splits
+nnoremap <leader>= :vertical resize +10<cr>
+nnoremap <leader>- :vertical resize -10<cr>
+
+" Resize horizontal splits
+nnoremap <leader>] :resize +10<cr>
+nnoremap <leader>[ :resize -10<cr>
+
+" Save with w
+nnoremap <leader>w :w<cr>
+
+" Close current window, won't close program
+nnoremap <leader>q :close<cr>
+
+" Show the current working directory
+nnoremap <leader>p :pwd<cr>
+" Set all window's current directory to the file's directory
+nnoremap <leader>d :cd %:p:h<cr>
+" Set current window's current directory to the file's directory
+nnoremap <leader>ld :lcd %:p:h<cr>
+" Don't use the path, just set the current working directory and use :e to
+" find files recursively
+" DEPRECATED:           " Set the path to the current directory, recursive
+                        " nnoremap <leader>sd :set path=%:p:h<cr>
+
+" Start a text search
+nnoremap <leader>/ :vimgrep /
+
+" Start a file search (use <tab>, not <cr>!)
+nnoremap <leader>f :e **/
+
+" Open the .vimrc file
+nnoremap <leader>vf :e $home/.vimrc<cr>
+
+" Reload .vimrc file
+nnoremap <leader>vr :so $MYVIMRC<cr>
+
+""""""""""""""""""
+" LEADER KEY END "
+""""""""""""""""""
+
+" NOTE: Search for files from the current working directory with
+" :e **/filename.ext // Recursive search
+" :e **/*.h\>        // Finds all .h files, won't find .hpp
+
+
+
+" Y functions like D, yanking until the end of the line
+nnoremap Y y$
+
+" hitting j k in insert mode will hit escape
+inoremap jk <esc>
+
+
+" NOTE: This is still happening on windows, but not on Mac for some reason
+" Silence the netrw from asking on "e ." commands
+" :silent Exp " Not functioning ?!!?
+let g:netrw_silent=1
+set shortmess+=T
+
 " F2 will open the file explorer in the current directory
 nnoremap <F2> :e .<CR>
 
 " Build GLMario.vcxproj
-nnoremap <F8> :e ..\GLMario.vcxproj<CR>:make<CR><C-6>
+" nnoremap <F8> :e ..\GLMario.vcxproj<CR>:make<CR><C-6>
 
 " Package control
-" Currently using omnicppcomplete
-execute pathogen#infect()
+" execute pathogen#infect()
 
 " disable vi compatibility (emulation of old bugs)
 set nocompatible
 
 " omnicppcomplete scratch pane disable. change - to + to reenable
-set completeopt-=preview
+" set completeopt-=preview
 
 " Allow plugins
 filetype plugin on
@@ -35,7 +99,7 @@ set nowrap
 " set textwidth=120
 
 " Change working directory to the currently opened file's directory
-set autochdir
+" set autochdir
 
 " Allow switching from an unsaved buffer
 " set hidden
@@ -44,7 +108,7 @@ set autochdir
 " set noswapfile
 
 " Better command-line completion
-" set wildmenu
+set wildmenu
 
 " Allow backspacing over autoindent, line breaks and start of insert action
 " set backspace=indent,eol,start
@@ -55,7 +119,7 @@ set backspace=start
 set ruler
 
 " Always display the status line, even if only one window is displayed
-" set laststatus=2
+set laststatus=2
 
 " Set the command window height to 2 lines, to avoid many cases of having to
 " "press <Enter> to continue"
@@ -67,6 +131,11 @@ set confirm
 
 " Insert both brackets at the proper indentation level when opening a bracket
 imap { {<CR>}<Up><C-o>o
+" Test this to see if it functions better for only happening after switching
+" to the next line
+" NOTE: does not work well, because it delays after the <CR> to see if the {
+" is coming
+" imap <CR>{ {<CR>}<Up><C-o>o
 
 " Quicker window movement
 nnoremap <C-j> <C-w>j
@@ -116,27 +185,27 @@ set comments=sl:/*,mb:\ *,elx:\ */
 " Install OmniCppComplete like described on http://vim.wikia.com/wiki/C++_code_completion
 " This offers intelligent C++ completion when typing . -> or <C-o>
 " Load standard tag files
-set tags+=~/.vim/tags/cpp
-set tags+=~/.vim/tags/gl
-set tags+=~/.vim/tags/sdl
+" set tags+=~/.vim/tags/cpp
+" set tags+=~/.vim/tags/gl
+" set tags+=~/.vim/tags/sdl
 
 " switch between header/source with F4
 map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 
 " OMNICPPCOMPLETE TAGS: recreate tags file with F9
-map <F9> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+" map <F9> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 
 " create doxygen comment
 " map <F6> :Dox<CR>
 
 " build using makeprg with <F7>
-map <F7> :make<CR>
+" map <F7> :make<CR>
 
 " build using makeprg with <S-F7>
-map <S-F7> :make clean all<CR>
+" map <S-F7> :make clean all<CR>
 
 " goto definition with F12
-map <F12> <C-]>
+" map <F12> <C-]>
 
 " in diff mode we use the spell check keys for merging
 " if &diff
