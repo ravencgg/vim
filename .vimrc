@@ -15,6 +15,9 @@ nnoremap <leader>- :vertical resize -10<cr>
 nnoremap <leader>] :resize +10<cr>
 nnoremap <leader>[ :resize -10<cr>
 
+" Center the screen on the cursor
+nnoremap <leader>c :normal zz<cr>
+
 " Save with w
 nnoremap <leader>w :w<cr>
 
@@ -32,6 +35,11 @@ nnoremap <leader>ld :lcd %:p:h<cr>
 " DEPRECATED:           " Set the path to the current directory, recursive
                         " nnoremap <leader>sd :set path=%:p:h<cr>
 
+" Shortcut to yanking to the system clipboard
+map <leader><space>y "*y
+map <leader><space>p "*p
+" map <leader><C-v> "*P
+
 " Start a text search
 nnoremap <leader>/ :vimgrep /
 
@@ -39,10 +47,10 @@ nnoremap <leader>/ :vimgrep /
 nnoremap <leader>f :e **/
 
 " Open the .vimrc file
-nnoremap <leader>vf :e $home/.vimrc<cr>
+nnoremap <leader>vf :e $HOME/.vimrc<cr>
 
-" Reload .vimrc file
-nnoremap <leader>vr :so $MYVIMRC<cr>
+" Reload .vimrc file - disabled unless making changes in the vimrc
+" nnoremap <leader>vr :so $MYVIMRC<cr>
 
 """"""""""""""""""
 " LEADER KEY END "
@@ -156,7 +164,7 @@ function! <SID>StripTrailingWhitespaces()
     %s/\s\+$//e
     call cursor(l, c)
 endfun
-autocmd BufWritePre .vimrc,*.h,*.c,*.cpp,*.hpp,*.C,*.java :call <SID>StripTrailingWhitespaces()
+autocmd BufWritePre .vimrc,*.h,*.c,*.cpp,*.hpp,*.C,*.java,*.glsl :call <SID>StripTrailingWhitespaces()
 "End strip trailing spaces
 
 " set UTF-8 encoding
