@@ -76,7 +76,7 @@ let g:netrw_silent=1
 set shortmess+=T
 
 " F2 will open the file explorer in the current directory
-nnoremap <F2> :e .<CR>
+" nnoremap <F2> :e .<CR>
 
 " Build GLMario.vcxproj
 " nnoremap <F8> :e ..\GLMario.vcxproj<CR>:make<CR><C-6>
@@ -120,7 +120,7 @@ set wildmenu
 
 " Allow backspacing over autoindent, line breaks and start of insert action
 " set backspace=indent,eol,start
-set backspace=start
+set backspace=indent,start
 
 " Display the cursor position on the last line of the screen or in the status
 " line of a window
@@ -190,44 +190,6 @@ set showmatch
 " intelligent comments
 set comments=sl:/*,mb:\ *,elx:\ */
 
-" Install OmniCppComplete like described on http://vim.wikia.com/wiki/C++_code_completion
-" This offers intelligent C++ completion when typing . -> or <C-o>
-" Load standard tag files
-" set tags+=~/.vim/tags/cpp
-" set tags+=~/.vim/tags/gl
-" set tags+=~/.vim/tags/sdl
-
 " switch between header/source with F4
 map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 
-" OMNICPPCOMPLETE TAGS: recreate tags file with F9
-" map <F9> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
-
-" create doxygen comment
-" map <F6> :Dox<CR>
-
-" build using makeprg with <F7>
-" map <F7> :make<CR>
-
-" build using makeprg with <S-F7>
-" map <S-F7> :make clean all<CR>
-
-" goto definition with F12
-" map <F12> <C-]>
-
-" in diff mode we use the spell check keys for merging
-" if &diff
-"    diff settings
-"   map <M-Down> ]c
-"   map <M-Up> [c
-"   map <M-Left> do
-"   map <M-Right> dp
-"   map <F9> :new<CR>:read !svn diff<CR>:set syntax=diff buftype=nofile<CR>gg
-" else
-"   " spell settings
-"   :setlocal spell spelllang=en
-"   " set the spellfile - folders must exist
-"   set spellfile=~/.vim/spellfile.add
-"   map <M-Down> ]s
-"   map <M-Up> [s
-" endif
