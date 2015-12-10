@@ -8,12 +8,12 @@
 map <space> <leader>
 
 " Resize vertical splits
-nnoremap <leader>= :vertical resize +10<cr>
-nnoremap <leader>- :vertical resize -10<cr>
+nnoremap <leader>= :resize +10<cr>
+nnoremap <leader>- :resize -10<cr>
 
 " Resize horizontal splits
-nnoremap <leader>] :resize +10<cr>
-nnoremap <leader>[ :resize -10<cr>
+nnoremap <leader>] :vertical resize +10<cr>
+nnoremap <leader>[ :vertical resize -10<cr>
 
 " Center the screen on the cursor
 nnoremap <leader>c :normal zz<cr>
@@ -59,8 +59,6 @@ nnoremap <leader>vf :e $HOME/.vimrc<cr>
 " NOTE: Search for files from the current working directory with
 " :e **/filename.ext // Recursive search
 " :e **/*.h\>        // Finds all .h files, won't find .hpp
-
-
 
 " Y functions like D, yanking until the end of the line
 nnoremap Y y$
