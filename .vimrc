@@ -1,6 +1,11 @@
-" VIM Configuration File
-" Description: Optimized for C/C++ development
 "
+
+""""""""""""""""""""""""""""""""
+" Additional Type Highlighting "
+""""""""""""""""""""""""""""""""
+
+syn keyword cppType uint8 uint16 uint32 uint64 int8 int16 int32 int64 u8 u16 u32 u64 i8 i16 i32 i64
+
 
 """"""""""""""""""""
 " LEADER KEY BEGIN "
@@ -52,6 +57,9 @@ nnoremap <leader>vf :e $HOME/.vimrc<cr>
 " Reload .vimrc file - disabled unless making changes in the vimrc
 " nnoremap <leader>vr :so $MYVIMRC<cr>
 
+" Redraw screen (Clears lit pixels from GVim)
+" :redr!
+
 """"""""""""""""""
 " LEADER KEY END "
 """"""""""""""""""
@@ -65,7 +73,6 @@ nnoremap Y y$
 
 " hitting j k in insert mode will hit escape
 inoremap jk <esc>
-
 
 " NOTE: This is still happening on windows, but not on Mac for some reason
 " Silence the netrw from asking on "e ." commands
@@ -136,7 +143,9 @@ set cmdheight=2
 set confirm
 
 " Insert both brackets at the proper indentation level when opening a bracket
-imap { {<CR>}<Up><C-o>o
+"imap {<CR> {<CR>}<Up><C-o>o
+"MOVED TO GVIMRC TO NOT BE USED BY Visual Studio!
+
 " Test this to see if it functions better for only happening after switching
 " to the next line
 " NOTE: does not work well, because it delays after the <CR> to see if the {
@@ -154,6 +163,18 @@ nnoremap <esc> :noh<return><esc>
 
 " Enable search highlighting
 set hlsearch
+
+" Incremental search on /
+set incsearch
+
+" no backups
+set nobackup
+set nowb
+set noswapfile
+
+" better indenting in visual mode
+vnoremap <Tab> > gv
+vnoremap <S-Tab> < gv
 
 " Strip trailing whitespace on save
 function! <SID>StripTrailingWhitespaces()

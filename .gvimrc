@@ -3,7 +3,19 @@
 " These are here so the vim inside of git bash does not try to use this sweet ass color scheme
 cd C:\Projects\
 "colorscheme slate
-colorscheme torte 
+"colorscheme torte 
+colorscheme vividchalk 
+
+
+" Save file from insert mode
+inoremap <C-s> <esc>:w<CR>
+" Save file from visual mode
+vmap <C-s> <esc>:w<CR>gv
+" Save file from normal mode
+nnoremap <silent> <C-S> :w<CR>
+
+" Insert both brackets at the proper indentation level when opening a bracket
+imap {<CR> {<CR>}<Up><C-o>o
 
 "remove menu bar
 ":set guioptions-=m
