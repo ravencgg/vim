@@ -73,6 +73,8 @@ nnoremap Y y$
 
 " hitting j k in insert mode will hit escape
 inoremap jk <esc>
+inoremap Jk <esc>
+inoremap JK <esc>
 
 " NOTE: This is still happening on windows, but not on Mac for some reason
 " Silence the netrw from asking on "e ." commands
