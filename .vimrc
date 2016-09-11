@@ -4,8 +4,14 @@
 " Additional Type Highlighting "
 """"""""""""""""""""""""""""""""
 
-syn keyword cppType uint8 uint16 uint32 uint64 int8 int16 int32 int64 u8 u16 u32 u64 i8 i16 i32 i64
+syn keyword cppType uint8 uint16 uint32 uint64 int8 int16 int32 int64 bool32 b32 u8 u16 u32 u64 i8 i16 i32 i64
 
+""""""""""""""""""""""""""""""""
+" Building with batch file     "
+""""""""""""""""""""""""""""""""
+
+set makeprg=build.bat
+"set errorformat+=\\\ %#%f(%l\\\,%c):\ %m
 
 """"""""""""""""""""
 " LEADER KEY BEGIN "
@@ -39,6 +45,17 @@ nnoremap <leader>ld :lcd %:p:h<cr>
 " find files recursively
 " DEPRECATED:           " Set the path to the current directory, recursive
                         " nnoremap <leader>sd :set path=%:p:h<cr>
+
+" Set up to run a command in a new process
+nnoremap <leader>r :silent ! start<space>
+
+" Run a terminal in the current directory
+nnoremap <leader>t :silent ! start cmd .<cr>
+
+" C++ style comment visually selected lines
+vnoremap <leader>/ :s/^/\/\/<cr><esc>    :noh<cr>
+" C++ style uncomment visually selected lines
+vnoremap <leader><space>/ :s/\/\///<cr> :noh<cr>
 
 " Shortcut to yanking to the system clipboard
 map <leader><space>y "*y
@@ -134,7 +151,9 @@ set backspace=indent,start
 set ruler
 
 " Always display the status line, even if only one window is displayed
-set laststatus=2
+" Moved to the .gvimrc since this causes the visual studio status line to be
+" twice as tall
+" set laststatus=2
 
 " Set the command window height to 2 lines, to avoid many cases of having to
 " "press <Enter> to continue"
@@ -165,6 +184,11 @@ nnoremap <esc> :noh<return><esc>
 
 " Enable search highlighting
 set hlsearch
+
+" Ignore case if / searching with all lower case, but be case sensitive if
+" there is a capital letter there. Override with \c \C
+set ignorecase
+set smartcase
 
 " Incremental search on /
 set incsearch

@@ -17,6 +17,11 @@ nnoremap <silent> <C-S> :w<CR>
 " Insert both brackets at the proper indentation level when opening a bracket
 imap {<CR> {<CR>}<Up><C-o>o
 
+" Always display the status line, even if only one window is displayed
+" Moved to the .gvimrc since this causes the visual studio status line to be
+" twice as tall
+" set laststatus=2
+
 "remove menu bar
 ":set guioptions-=m
 

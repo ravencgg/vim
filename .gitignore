@@ -10,5 +10,8 @@
 !vimfiles/*
 !vimfiles/colors/*
 
+# But definitely this one
+vimfiles/.netrwhist
+
 # ...even if they are in subdirectories
 #!*/
