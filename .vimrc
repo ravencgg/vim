@@ -52,6 +52,10 @@ nnoremap <leader>r :silent ! start<space>
 " Run a terminal in the current directory
 nnoremap <leader>t :silent ! start cmd .<cr>
 
+" Disable highlighting after a search, used to be on Esc, but that breaks
+" terminal vim sessions
+nnoremap <leader>n :noh<cr>
+
 " C++ style comment visually selected lines
 vnoremap <leader>/ :s/^/\/\/<cr><esc>    :noh<cr>
 " C++ style uncomment visually selected lines
@@ -118,7 +122,7 @@ set nocompatible
 filetype plugin on
 
 " set font
-set guifont=Consolas:h9:cANSI
+set guifont=Consolas:h10:cANSI
 
 " Disable audio and visual bells (error beeps and screen flashes)
 " This must also be set in the gvimrc
@@ -180,7 +184,8 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
 " Turn off search highlighting when pressing escape in normal mode
-nnoremap <esc> :noh<return><esc>
+" NOTE: Rebound to <leader>n to avoid console screwups
+"nnoremap <esc> :noh<cr><esc>
 
 " Enable search highlighting
 set hlsearch
