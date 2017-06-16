@@ -1,5 +1,22 @@
 "
+""""""""""""""""""""""""""""""""
+" Plugin Management            "
+""""""""""""""""""""""""""""""""
 
+if has("gui_running")
+    set lines=40 columns=150
+    set laststatus=2
+endif
+
+" ctrlp ignore directories
+let g:ctrlp_custom_ignore = 'build\|Debug\|obj'
+
+if has("gui_running")
+    function! AirlineInit()
+        let g:airline_section_a = airline#section#create(['mode', ' ', 'branch'])
+    endfunction
+    autocmd VimEnter * call AirlineInit()
+endif
 """"""""""""""""""""""""""""""""
 " Additional Type Highlighting "
 """"""""""""""""""""""""""""""""
