@@ -6,7 +6,8 @@ cd C:\Projects\
 "colorscheme slate
 "colorscheme torte 
 "colorscheme vividchalk 
-colorscheme badwolf
+"colorscheme badwolf
+colorscheme molokai
 
 
 " Save file from insert mode
