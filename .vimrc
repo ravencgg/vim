@@ -18,6 +18,9 @@ let g:ctrlp_custom_ignore = 'build\|Debug\|obj'
 "    endfunction
 "    autocmd VimEnter * call AirlineInit()
 "endif
+
+"set runtimepath^=~/.vim
+
 """"""""""""""""""""""""""""""""
 " Additional Type Highlighting "
 """"""""""""""""""""""""""""""""
