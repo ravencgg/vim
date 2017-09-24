@@ -8,8 +8,8 @@ if has("gui_running")
     set laststatus=2
 endif
 
-" ctrlp ignore directories
-let g:ctrlp_custom_ignore = 'build\|Debug\|obj'
+" ctrlp ignore directories "
+let g:ctrlp_custom_ignore = 'build\|Debug\|\.obj'
 
 " airline + fugitive does this automatically
 "if has("gui_running")
@@ -106,6 +106,10 @@ nnoremap <leader>vf :e $HOME/.vimrc<cr>
 " LEADER KEY END "
 """"""""""""""""""
 
+" Don't look in included files for ctrl+n autocomplete
+set complete-=i
+
+
 " NOTE: Search for files from the current working directory with
 " :e **/filename.ext // Recursive search
 " :e **/*.h\>        // Finds all .h files, won't find .hpp
@@ -123,6 +127,11 @@ inoremap JK <esc>
 " :silent Exp " Not functioning ?!!?
 let g:netrw_silent=1
 set shortmess+=T
+
+" hide . and .. in netrw
+"let g:netrw_list_hide='.*\.swp$'
+let g:netrw_list_hide = '^\./$,^\.\./$'
+let g:netrw_hide = 1
 
 " F2 will open the file explorer in the current directory
 " nnoremap <F2> :e .<CR>
@@ -148,6 +157,9 @@ set guifont=Consolas:h10:cANSI
 " Disable audio and visual bells (error beeps and screen flashes)
 " This must also be set in the gvimrc
 set vb t_vb=
+
+" Highlight the current line of text
+set cursorline
 
 " Don't wrap long lines of text
 set nowrap
