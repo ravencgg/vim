@@ -8,6 +8,7 @@
 !.gvimrc
 !vimfiles
 !vimfiles/**
+vimfiles/undo
 
 # But definitely this one
 vimfiles/.netrwhist

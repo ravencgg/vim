@@ -3,10 +3,14 @@
 " Plugin Management            "
 """"""""""""""""""""""""""""""""
 
+"set renderoptions=type:directx
+
 if has("gui_running")
     set lines=40 columns=150
     set laststatus=2
 endif
+
+" set renderoptions=type:directx,gamma:1.5,contrast:0.5,geom:1,renmode:5,taamode:1,level:0.5
 
 " ctrlp ignore directories "
 let g:ctrlp_custom_ignore = 'build\|Debug\|\.obj'
@@ -173,6 +177,13 @@ set nowrap
 " Allow switching from an unsaved buffer
 " set hidden
 
+" Persistent undo
+" Be sure to create the undodir directory!!
+set undofile
+set undodir=$HOME/vimfiles/undo
+set undolevels=1000
+set undoreload=10000
+
 " Disable swap file creation
 " set noswapfile
 
@@ -215,6 +226,12 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
+
+" Highlight the line that the cursor is on
+set cursorline
+
+" Disable looking through included files when doing autocomplete with ctrl-n
+set complete-=i
 
 " Turn off search highlighting when pressing escape in normal mode
 " NOTE: Rebound to <leader>n to avoid console screwups
