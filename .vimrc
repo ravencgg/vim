@@ -13,7 +13,7 @@ endif
 " set renderoptions=type:directx,gamma:1.5,contrast:0.5,geom:1,renmode:5,taamode:1,level:0.5
 
 " ctrlp ignore directories "
-let g:ctrlp_custom_ignore = 'build\|Debug\|\.obj'
+let g:ctrlp_custom_ignore = 'build\|\.obj'
 
 " airline + fugitive does this automatically
 "if has("gui_running")
@@ -156,7 +156,7 @@ set nocompatible
 filetype plugin on
 
 " set font
-set guifont=Consolas:h10:cANSI
+set guifont=Consolas:h11:cANSI
 
 " Disable audio and visual bells (error beeps and screen flashes)
 " This must also be set in the gvimrc

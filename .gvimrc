@@ -7,7 +7,8 @@ cd C:\Projects\
 "colorscheme torte 
 "colorscheme vividchalk 
 "colorscheme badwolf
-colorscheme molokai
+"colorscheme molokai
+colorscheme herald
 
 
 " Save file from insert mode
