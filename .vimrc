@@ -3,39 +3,26 @@
 " Plugin Management            "
 """"""""""""""""""""""""""""""""
 
-"set renderoptions=type:directx
-
 if has("gui_running")
     set lines=40 columns=150
     set laststatus=2
 endif
 
+" Disabled due to slowing down redraws
 " set renderoptions=type:directx,gamma:1.5,contrast:0.5,geom:1,renmode:5,taamode:1,level:0.5
 
 " ctrlp ignore directories "
 let g:ctrlp_custom_ignore = 'build\|\.obj'
 
-" airline + fugitive does this automatically
-"if has("gui_running")
-"    function! AirlineInit()
-"        let g:airline_section_a = airline#section#create(['mode', ' ', 'branch'])
-"    endfunction
-"    autocmd VimEnter * call AirlineInit()
-"endif
-
 "set runtimepath^=~/.vim
-
-""""""""""""""""""""""""""""""""
-" Additional Type Highlighting "
-""""""""""""""""""""""""""""""""
-
-syn keyword cppType uint8 uint16 uint32 uint64 int8 int16 int32 int64 bool32 b32 u8 u16 u32 u64 i8 i16 i32 i64
 
 """"""""""""""""""""""""""""""""
 " Building with batch file     "
 """"""""""""""""""""""""""""""""
 
 " Search for a build.bat in any parent folder and execute it
+" This file is in vimfiles/my_files but must be moved to a
+" place in the path to use it
 set makeprg=run_build.bat
 nnoremap <F6> :make<cr> :cw<cr>
 " Map both F7 and Shift F8 to previous quickfix the
@@ -84,6 +71,7 @@ nnoremap <leader>ld :lcd %:p:h<cr>
 nnoremap <leader>r :silent ! start<space>
 
 " Run a terminal in the current directory
+" DEPRECATED: Using vim's new :terminal mode in 8.1
 "nnoremap <leader>t :silent ! start cmd .<cr>
 
 " Disable highlighting after a search, used to be on Esc, but that breaks
@@ -149,14 +137,8 @@ set shortmess+=T
 let g:netrw_list_hide = '^\./$,^\.\./$'
 let g:netrw_hide = 1
 
-" F2 will open the file explorer in the current directory
-" nnoremap <F2> :e .<CR>
-
 " disable vi compatibility (emulation of old bugs)
 set nocompatible
-
-" omnicppcomplete scratch pane disable. change - to + to reenable
-" set completeopt-=preview
 
 " Allow plugins
 filetype plugin on
@@ -190,9 +172,6 @@ set undodir=$HOME/vimfiles/undo
 set undolevels=1000
 set undoreload=10000
 
-" Disable swap file creation
-" set noswapfile
-
 " Better command-line completion
 set wildmenu
 
@@ -204,11 +183,6 @@ set backspace=indent,start
 " line of a window
 set ruler
 
-" Always display the status line, even if only one window is displayed
-" Moved to the .gvimrc since this causes the visual studio status line to be
-" twice as tall
-" set laststatus=2
-
 " Set the command window height to 2 lines, to avoid many cases of having to
 " "press <Enter> to continue"
 set cmdheight=2
@@ -217,23 +191,13 @@ set cmdheight=2
 " dialogue asking if you wish to save changed files.
 set confirm
 
-" Insert both brackets at the proper indentation level when opening a bracket
-"imap {<CR> {<CR>}<Up><C-o>o
-"MOVED TO GVIMRC TO NOT BE USED BY Visual Studio!
-
-" Test this to see if it functions better for only happening after switching
-" to the next line
-" NOTE: does not work well, because it delays after the <CR> to see if the {
-" is coming
-" imap <CR>{ {<CR>}<Up><C-o>o
-
 " Quicker window movement
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
-" vim 8.1 terminal
+" Terminal: vim 8.1 terminal
 tmap <C-j> <C-w>j
 tmap <C-k> <C-w>k
 tmap <C-h> <C-w>h
@@ -252,12 +216,9 @@ function! <SID>OpenTerminal()
 endfun
 nnoremap <leader>t :call <SID>OpenTerminal()<cr>
 
-" nvim terminal
-"tnoremap <C-j> <C-w>j
-"tnoremap <C-k> <C-w>k
-"tnoremap <C-h> <C-w>h
-"tnoremap <C-l> <C-w>l
-"tnoremap <esc> <C-\><C-n>
+" Allow hidden terminal buffer
+autocmd BufWinEnter * if &buftype == 'terminal' | setlocal bufhidden=hide | endif
+" End Terminal:
 
 
 " Highlight the line that the cursor is on
@@ -265,10 +226,6 @@ set cursorline
 
 " Disable looking through included files when doing autocomplete with ctrl-n
 set complete-=i
-
-" Turn off search highlighting when pressing escape in normal mode
-" NOTE: Rebound to <leader>n to avoid console screwups
-"nnoremap <esc> :noh<cr><esc>
 
 " Enable search highlighting
 set hlsearch
@@ -297,12 +254,8 @@ function! <SID>StripTrailingWhitespaces()
     %s/\s\+$//e
     call cursor(l, c)
 endfun
-autocmd BufWritePre .vimrc,*.h,*.c,*.cpp,*.hpp,*.C,*.java,*.glsl :call <SID>StripTrailingWhitespaces()
+autocmd BufWritePre .vimrc,*.h,*.c,*.cpp,*.hpp,*.C,*.java,*.glsl,*.hlsl,*.lua :call <SID>StripTrailingWhitespaces()
 "End strip trailing spaces
-
-" Terminal: allow hidden buffer
-autocmd BufWinEnter * if &buftype == 'terminal' | setlocal bufhidden=hide | endif
-" End Terminal:
 
 " set UTF-8 encoding
 set enc=utf-8
