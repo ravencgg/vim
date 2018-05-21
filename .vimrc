@@ -239,11 +239,9 @@ tmap <C-k> <C-w>k
 tmap <C-h> <C-w>h
 tmap <C-l> <C-w>l
 tmap <esc> <C-\><C-n>
-tmap <C-V> <C-W>"0i
+tmap <C-V> <C-W>"0
 
 " Launch git bash
-" :terminal ++curwin "C:\\Program Files\\Git\\bin\\sh.exe"
-
 function! <SID>OpenTerminal()
     let term = "C:\\Program Files\\Git\\bin\\sh.exe"
     let dict = {'term_name' : 'Git Bash',
