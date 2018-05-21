@@ -27,7 +27,7 @@ imap {<CR> {<CR>}<Up><C-o>o
 " set laststatus=2
 
 "remove menu bar
-":set guioptions-=m
+:set guioptions-=m
 
 "remove toolbar
 :set guioptions-=T  
