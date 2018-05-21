@@ -1,14 +1,14 @@
 
 
 " These are here so the vim inside of git bash does not try to use this sweet ass color scheme
-cd C:\Projects\
-" cd C:\Users\cgenova\Projects
+"cd C:\Projects\
+cd C:\Users\cgenova\Projects
 "colorscheme slate
 "colorscheme torte 
 "colorscheme vividchalk 
 "colorscheme badwolf
 "colorscheme molokai
-colorscheme herald
+colorscheme gruvbox
 
 
 " Save file from insert mode

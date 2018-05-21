@@ -6,10 +6,27 @@
 if has("gui_running")
     set lines=40 columns=150
     set laststatus=2
+
+    " gruvbox!
+    "let g:gruvbox_contrast_dark = 'soft'
+    "let g:gruvbox_contrast_dark = 'medium'
+    let g:gruvbox_contrast_dark = 'hard'
+    nnoremap <silent> [oh :call gruvbox#hls_show()<CR>
+    nnoremap <silent> ]oh :call gruvbox#hls_hide()<CR>
+    nnoremap <silent> coh :call gruvbox#hls_toggle()<CR>
+    nnoremap * :let @/ = ""<CR>:call gruvbox#hls_show()<CR>*
+    nnoremap / :let @/ = ""<CR>:call gruvbox#hls_show()<CR>/
+    nnoremap ? :let @/ = ""<CR>:call gruvbox#hls_show()<CR>?
+    " !gruvbox
+
 endif
 
-" Disabled due to slowing down redraws
-" set renderoptions=type:directx,gamma:1.5,contrast:0.5,geom:1,renmode:5,taamode:1,level:0.5
+" NOTE: This slows down redrawing
+if has("directx")
+    set encoding=utf-8
+    "set renderoptions=type:directx,gamma:1.5,contrast:0.5,geom:1,renmode:4,taamode:1
+    ",level:1.0
+endif
 
 " ctrlp ignore directories "
 let g:ctrlp_custom_ignore = 'build\|\.obj'
@@ -94,6 +111,9 @@ nnoremap <leader>/ :vimgrep /
 " Start a file search (use <tab>, not <cr>!)
 nnoremap <leader>f :e **/
 
+" Set the current file's syntax highlighting to c++
+nnoremap <leader>s :set syntax=cpp<cr>
+
 " Open the .vimrc file
 nnoremap <leader>vf :e $HOME/.vimrc<cr>
 
@@ -125,6 +145,12 @@ nnoremap Y y$
 inoremap jk <esc>
 inoremap Jk <esc>
 inoremap JK <esc>
+
+" Shift + Enter will split the line at the cursor in normal mode (== to auto
+" align after the split.
+"nnoremap <S-CR> i<CR><Esc>==
+nnoremap <S-CR> i<CR><Esc>
+
 
 " NOTE: This is still happening on windows, but not on Mac for some reason
 " Silence the netrw from asking on "e ." commands
