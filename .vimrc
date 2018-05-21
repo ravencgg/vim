@@ -35,7 +35,16 @@ syn keyword cppType uint8 uint16 uint32 uint64 int8 int16 int32 int64 bool32 b32
 " Building with batch file     "
 """"""""""""""""""""""""""""""""
 
-set makeprg=build.bat
+" Search for a build.bat in any parent folder and execute it
+set makeprg=run_build.bat
+nnoremap <F6> :make<cr> :cw<cr>
+" Map both F7 and Shift F8 to previous quickfix the
+" shift version mirrors VS, but won't work well in
+" the terminal.
+nnoremap <F7> :cp<cr>
+nnoremap <S-F8> :cp<cr>
+nnoremap <F8> :cn<cr>
+
 "set errorformat+=\\\ %#%f(%l\\\,%c):\ %m
 
 """"""""""""""""""""
@@ -75,7 +84,7 @@ nnoremap <leader>ld :lcd %:p:h<cr>
 nnoremap <leader>r :silent ! start<space>
 
 " Run a terminal in the current directory
-nnoremap <leader>t :silent ! start cmd .<cr>
+"nnoremap <leader>t :silent ! start cmd .<cr>
 
 " Disable highlighting after a search, used to be on Esc, but that breaks
 " terminal vim sessions
@@ -100,8 +109,11 @@ nnoremap <leader>f :e **/
 " Open the .vimrc file
 nnoremap <leader>vf :e $HOME/.vimrc<cr>
 
+" Set to cpp syntax highlighting
+nnoremap <leader>s :set syntax=cpp<cr>
+
 " Reload .vimrc file - disabled unless making changes in the vimrc
-" nnoremap <leader>vr :so $MYVIMRC<cr>
+nnoremap <leader>vr :so $MYVIMRC<cr>
 
 " Redraw screen (Clears lit pixels from GVim)
 " :redr!
@@ -139,12 +151,6 @@ let g:netrw_hide = 1
 
 " F2 will open the file explorer in the current directory
 " nnoremap <F2> :e .<CR>
-
-" Build GLMario.vcxproj
-" nnoremap <F8> :e ..\GLMario.vcxproj<CR>:make<CR><C-6>
-
-" Package control
-" execute pathogen#infect()
 
 " disable vi compatibility (emulation of old bugs)
 set nocompatible
@@ -227,6 +233,35 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
+" vim 8.1 terminal
+tmap <C-j> <C-w>j
+tmap <C-k> <C-w>k
+tmap <C-h> <C-w>h
+tmap <C-l> <C-w>l
+tmap <esc> <C-\><C-n>
+tmap <C-V> <C-W>"0i
+
+" Launch git bash
+" :terminal ++curwin "C:\\Program Files\\Git\\bin\\sh.exe"
+
+function! <SID>OpenTerminal()
+    let term = "C:\\Program Files\\Git\\bin\\sh.exe"
+    let dict = {'term_name' : 'Git Bash',
+                \ 'term_kill' : 'term',
+                \ 'term_finish' : 'close',
+                \ 'curwin' : '1', }
+    call term_start(term, dict)
+endfun
+nnoremap <leader>t :call <SID>OpenTerminal()<cr>
+
+" nvim terminal
+"tnoremap <C-j> <C-w>j
+"tnoremap <C-k> <C-w>k
+"tnoremap <C-h> <C-w>h
+"tnoremap <C-l> <C-w>l
+"tnoremap <esc> <C-\><C-n>
+
+
 " Highlight the line that the cursor is on
 set cursorline
 
@@ -266,6 +301,10 @@ function! <SID>StripTrailingWhitespaces()
 endfun
 autocmd BufWritePre .vimrc,*.h,*.c,*.cpp,*.hpp,*.C,*.java,*.glsl :call <SID>StripTrailingWhitespaces()
 "End strip trailing spaces
+
+" Terminal: allow hidden buffer
+autocmd BufWinEnter * if &buftype == 'terminal' | setlocal bufhidden=hide | endif
+" End Terminal:
 
 " set UTF-8 encoding
 set enc=utf-8
