@@ -2,14 +2,13 @@
 
 " These are here so the vim inside of git bash does not try to use this sweet ass color scheme
 "cd C:\Projects\
-cd C:\Users\cgenova\Projects
+cd C:\Projects
 "colorscheme slate
 "colorscheme torte 
 "colorscheme vividchalk 
 "colorscheme badwolf
 "colorscheme molokai
 colorscheme gruvbox
-
 
 " Save file from insert mode
 inoremap <C-s> <esc>:w<CR>
@@ -20,11 +19,6 @@ nnoremap <silent> <C-S> :w<CR>
 
 " Insert both brackets at the proper indentation level when opening a bracket
 imap {<CR> {<CR>}<Up><C-o>o
-
-" Always display the status line, even if only one window is displayed
-" Moved to the .gvimrc since this causes the visual studio status line to be
-" twice as tall
-" set laststatus=2
 
 "remove menu bar
 :set guioptions-=m

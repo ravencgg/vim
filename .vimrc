@@ -4,8 +4,24 @@
 """"""""""""""""""""""""""""""""
 
 if has("gui_running")
+"    set laststatus=2
     set lines=40 columns=150
-    set laststatus=2
+
+    " gruvbox!
+    let g:gruvbox_bold = '0'
+    "let g:gruvbox_undercurl = '0'
+    let g:gruvbox_vert_split = 'bg4'
+    "let g:gruvbox_contrast_dark = 'soft'
+    "let g:gruvbox_contrast_dark = 'medium'
+    "let g:gruvbox_contrast_dark = 'hard'
+    nnoremap <silent> [oh :call gruvbox#hls_show()<CR>
+    nnoremap <silent> ]oh :call gruvbox#hls_hide()<CR>
+    nnoremap <silent> coh :call gruvbox#hls_toggle()<CR>
+    nnoremap * :let @/ = ""<CR>:call gruvbox#hls_show()<CR>*
+    nnoremap / :let @/ = ""<CR>:call gruvbox#hls_show()<CR>/
+    nnoremap ? :let @/ = ""<CR>:call gruvbox#hls_show()<CR>?
+    " !gruvbox
+
 
     " gruvbox!
     "let g:gruvbox_contrast_dark = 'soft'
@@ -27,7 +43,6 @@ if has("directx")
     "set renderoptions=type:directx,gamma:1.5,contrast:0.5,geom:1,renmode:4,taamode:1
     ",level:1.0
 endif
-
 " ctrlp ignore directories "
 let g:ctrlp_custom_ignore = 'build\|\.obj'
 
@@ -48,7 +63,6 @@ nnoremap <F6> :make<cr> :cw<cr>
 nnoremap <F7> :cp<cr>
 nnoremap <S-F8> :cp<cr>
 nnoremap <F8> :cn<cr>
-
 "set errorformat+=\\\ %#%f(%l\\\,%c):\ %m
 
 """"""""""""""""""""
