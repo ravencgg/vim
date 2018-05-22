@@ -223,29 +223,30 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
-" Terminal: vim 8.1 terminal
-tmap <C-j> <C-w>j
-tmap <C-k> <C-w>k
-tmap <C-h> <C-w>h
-tmap <C-l> <C-w>l
-tmap <esc> <C-\><C-n>
-tmap <C-V> <C-W>"0
+if v:version >= 801
+    " Terminal: vim 8.1 terminal
+    tmap <C-j> <C-w>j
+    tmap <C-k> <C-w>k
+    tmap <C-h> <C-w>h
+    tmap <C-l> <C-w>l
+    tmap <esc> <C-\><C-n>
+    tmap <C-V> <C-W>"0
 
-" Launch git bash
-function! <SID>OpenTerminal()
-    let term = "C:\\Program Files\\Git\\bin\\sh.exe"
-    let dict = {'term_name' : 'Git Bash',
-                \ 'term_kill' : 'term',
-                \ 'term_finish' : 'close',
-                \ 'curwin' : '1', }
-    call term_start(term, dict)
-endfun
-nnoremap <leader>t :call <SID>OpenTerminal()<cr>
+    " Launch git bash
+    function! <SID>OpenTerminal()
+        let term = "C:\\Program Files\\Git\\bin\\sh.exe"
+        let dict = {'term_name' : 'Git Bash',
+                    \ 'term_kill' : 'term',
+                    \ 'term_finish' : 'close',
+                    \ 'curwin' : '1', }
+        call term_start(term, dict)
+    endfun
+    nnoremap <leader>t :call <SID>OpenTerminal()<cr>
 
-" Allow hidden terminal buffer
-autocmd BufWinEnter * if &buftype == 'terminal' | setlocal bufhidden=hide | endif
-" End Terminal:
-
+    " Allow hidden terminal buffer
+    autocmd BufWinEnter * if &buftype == 'terminal' | setlocal bufhidden=hide | endif
+    " End Terminal:
+endif
 
 " Highlight the line that the cursor is on
 set cursorline
