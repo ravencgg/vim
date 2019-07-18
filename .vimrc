@@ -147,6 +147,13 @@ nnoremap <leader>vr :so $MYVIMRC<cr>
 " Don't look in included files for ctrl+n autocomplete
 set complete-=i
 
+" Don't look in tags files for ctrl+n autocomplete
+set complete-=t
+
+" I think the semicolon means to search up recursively for the tags file named
+" 'tags' here.
+set tags=tags;
+
 
 " NOTE: Search for files from the current working directory with
 " :e **/filename.ext // Recursive search
