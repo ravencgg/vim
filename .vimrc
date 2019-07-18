@@ -154,6 +154,9 @@ set complete-=t
 " 'tags' here.
 set tags=tags;
 
+" There is a copy of ctags.exe in vimfiles/my_files
+" Example usage:
+" ctags.exe --language-force=C++ -R
 
 " NOTE: Search for files from the current working directory with
 " :e **/filename.ext // Recursive search
