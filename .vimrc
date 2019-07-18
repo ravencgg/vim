@@ -120,7 +120,7 @@ map <leader><space>p "*p
 " map <leader><C-v> "*P
 
 " Start a text search
-nnoremap <leader>/ :vimgrep /
+nnoremap <leader>/ :vimgrep // **/*<Left><Left><Left><Left><Left><Left>
 
 " Start a file search (use <tab>, not <cr>!)
 nnoremap <leader>f :e **/
