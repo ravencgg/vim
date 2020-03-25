@@ -43,7 +43,7 @@ let g:ctrlp_custom_ignore = 'build\|\.obj'
 " This file is in vimfiles/my_files but must be moved to a
 " place in the path to use it
 set makeprg=run_build.bat
-nnoremap <F6> :make<cr> :cw<cr>
+nnoremap <F6> :make<cr> :copen<cr>
 " Map both F7 and Shift F8 to previous quickfix the
 " shift version mirrors VS, but won't work well in
 " the terminal.
@@ -61,9 +61,17 @@ map <space> <leader>
 nnoremap <leader>= :resize +10<cr>
 nnoremap <leader>- :resize -10<cr>
 
+" Resize vertical splits Large
+nnoremap <leader><space>= :resize +40<cr>
+nnoremap <leader><space>- :resize -40<cr>
+
 " Resize horizontal splits
 nnoremap <leader>] :vertical resize +10<cr>
 nnoremap <leader>[ :vertical resize -10<cr>
+
+" Resize horizontal splits Large
+nnoremap <leader><space>] :vertical resize +40<cr>
+nnoremap <leader><space>[ :vertical resize -40<cr>
 
 " Center the screen on the cursor
 nnoremap <leader>c :normal zz<cr>
