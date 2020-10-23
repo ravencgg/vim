@@ -12,8 +12,8 @@ if has("gui_running")
     "let g:gruvbox_undercurl = '0'
     let g:gruvbox_vert_split = 'bg4'
     "let g:gruvbox_contrast_dark = 'soft'
-    let g:gruvbox_contrast_dark = 'medium'
-    "let g:gruvbox_contrast_dark = 'hard'
+    "let g:gruvbox_contrast_dark = 'medium'
+    let g:gruvbox_contrast_dark = 'hard'
     nnoremap <silent> [oh :call gruvbox#hls_show()<CR>
     nnoremap <silent> ]oh :call gruvbox#hls_hide()<CR>
     nnoremap <silent> coh :call gruvbox#hls_toggle()<CR>
