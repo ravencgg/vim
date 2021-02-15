@@ -139,6 +139,9 @@ nnoremap <leader>vr :so $MYVIMRC<cr>
 " LEADER KEY END "
 """"""""""""""""""
 
+" Shift + k brings up help, which is sometimes useful, but often accidental
+map <S-k> <Nop>
+
 " Don't look in included files for ctrl+n autocomplete
 set complete-=i
 
