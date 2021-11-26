@@ -51,7 +51,7 @@ nnoremap <F8> :cn<cr>
 "set errorformat+=\\\ %#%f(%l\\\,%c):\ %m
 "
 "Error format for MSBuild
-"set errorformat=\ %#%f(%l\\\,%c):\ %m
+set errorformat=\ %#%f(%l\\\,%c):\ %m
 
 """"""""""""""""""""
 " LEADER KEY BEGIN "
