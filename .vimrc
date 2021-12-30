@@ -37,10 +37,6 @@ let g:ctrlp_custom_ignore = 'build\|\.obj'
 " Building with batch file     "
 """"""""""""""""""""""""""""""""
 
-" Search for a build.bat in any parent folder and execute it
-" This file is in vimfiles/my_files but must be moved to a
-" place in the path to use it
-set makeprg=run_build.bat
 nnoremap <F6> :make<cr> :copen<cr>
 " Map both F7 and Shift F8 to previous quickfix the
 " shift version mirrors VS, but won't work well in
@@ -48,10 +44,21 @@ nnoremap <F6> :make<cr> :copen<cr>
 nnoremap <F7> :cp<cr>
 nnoremap <S-F8> :cp<cr>
 nnoremap <F8> :cn<cr>
+
+"I _think_ this is for cl.exe:
 "set errorformat+=\\\ %#%f(%l\\\,%c):\ %m
-"
+
 "Error format for MSBuild
-set errorformat=\ %#%f(%l\\\,%c):\ %m
+"set errorformat=\ %#%f(%l\\\,%c):\ %m
+"This overrides the makefile program:
+compiler! msbuild
+"compiler! msvc
+
+" Keep this after compiler! to override the makeprg that it sets
+" Search for a build.bat in any parent folder and execute it
+" This file is in vimfiles/my_files but must be moved to a
+" place in the path to use it
+set makeprg=run_build.bat
 
 """"""""""""""""""""
 " LEADER KEY BEGIN "
@@ -133,6 +140,11 @@ nnoremap <leader>s :set syntax=cpp<cr>
 " Reload .vimrc file - disabled unless making changes in the vimrc
 nnoremap <leader>vr :so $MYVIMRC<cr>
 
+" store session:
+nnoremap <leader>m :mks c:\temp\session2.vim<cr>
+" reload session:
+" source <filename>
+
 " Redraw screen (Clears lit pixels from GVim)
 " :redr!
 
@@ -174,6 +186,8 @@ inoremap JK <esc>
 "nnoremap <S-CR> i<CR><Esc>==
 nnoremap <S-CR> i<CR><Esc>
 
+" Don't indent case labels in switch statement
+set cinoptions=:0
 
 " NOTE: This is still happening on windows, but not on Mac for some reason
 " Silence the netrw from asking on "e ." commands
