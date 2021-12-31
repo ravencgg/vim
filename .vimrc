@@ -187,7 +187,7 @@ inoremap JK <esc>
 nnoremap <S-CR> i<CR><Esc>
 
 " Don't indent case labels in switch statement
-set cinoptions=:0
+set cinoptions=:0,l1
 
 " NOTE: This is still happening on windows, but not on Mac for some reason
 " Silence the netrw from asking on "e ." commands
