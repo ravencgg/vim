@@ -1,5 +1,4 @@
 
-
 " These are here so the vim inside of git bash does not try to use this sweet ass color scheme
 "cd C:\Projects\
 cd C:\Projects

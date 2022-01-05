@@ -4,6 +4,21 @@
 """"""""""""""""""""""""""""""""
 
 if has("gui_running")
+
+    " I would rather this go into the .gvimrc file, but that is loaded
+    " too late in the initialization process, so packages have already
+    " finished loading at that point.
+    if has('win32') || has('win64')
+        set runtimepath-=~/vimfiles
+        set runtimepath^=~/.vim
+        set runtimepath-=~/vimfiles/after
+        set runtimepath+=~/.vim/after
+        set packpath-=~/vimfiles
+        set packpath^=~/.vim
+        set packpath-=~/vimfiles/after
+        set packpath+=~/.vim/after
+    endif
+
 "    set laststatus=2
     set lines=40 columns=150
 
@@ -207,7 +222,7 @@ set nocompatible
 filetype plugin on
 
 " set font
-set guifont=Consolas:h11:cANSI
+set guifont=Consolas:h10.5:cANSI
 
 " Disable audio and visual bells (error beeps and screen flashes)
 " This must also be set in the gvimrc
