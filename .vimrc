@@ -53,6 +53,7 @@ let g:ctrlp_custom_ignore = 'build\|\.obj'
 """"""""""""""""""""""""""""""""
 
 nnoremap <F6> :make<cr> :copen<cr>
+nnoremap <C-b> :make<cr> :copen<cr>
 " Map both F7 and Shift F8 to previous quickfix the
 " shift version mirrors VS, but won't work well in
 " the terminal.
