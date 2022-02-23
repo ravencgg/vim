@@ -4,3 +4,9 @@
 [submodule "vimfiles/pack/plugins/start/ctrlp.vim"]
 	path = .vim/pack/plugins/start/ctrlp.vim
 	url = https://github.com/ctrlpvim/ctrlp.vim.git
+[submodule ".vim/pack/plugins/start/odin.vim"]
+	path = .vim/pack/plugins/start/odin.vim
+	url = https://github.com/Tetralux/odin.vim.git
+[submodule ".vim/pack/plugins/start/asyncrun.vim"]
+	path = .vim/pack/plugins/start/asyncrun.vim
+	url = https://github.com/skywind3000/asyncrun.vim.git

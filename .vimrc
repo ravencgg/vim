@@ -3,7 +3,16 @@
 " Plugin Management            "
 """"""""""""""""""""""""""""""""
 
-if has("gui_running")
+"if has('nvim')
+"    cd C:\Projects
+"    colorscheme gruvbox
+"    inoremap <C-s> <esc>:w<CR>
+"    vmap <C-s> <esc>:w<CR>gv
+"    nnoremap <silent> <C-S> :w<CR>
+"    imap {<CR> {<CR>}<Up><C-o>o
+"endif
+
+if has("gui_running")        " || has('nvim')
 
     " I would rather this go into the .gvimrc file, but that is loaded
     " too late in the initialization process, so packages have already
@@ -53,7 +62,13 @@ let g:ctrlp_custom_ignore = 'build\|\.obj'
 """"""""""""""""""""""""""""""""
 
 nnoremap <F6> :make<cr> :copen<cr>
-nnoremap <C-b> :make<cr> :copen<cr>
+
+" nnoremap <C-b> :make<cr>
+"
+" AsyncRun plugin: invoke build.bat
+let g:asyncrun_open=10
+nnoremap <C-b> :AsyncRun run_build.bat<cr>
+
 " Map both F7 and Shift F8 to previous quickfix the
 " shift version mirrors VS, but won't work well in
 " the terminal.
@@ -192,8 +207,9 @@ set tags=tags;
 " Y functions like D, yanking until the end of the line
 nnoremap Y y$
 
-" hitting j k in insert mode will hit escape
+" hitting j k in insert mode will hit return to normal mode
 inoremap jk <esc>
+inoremap jK <esc>
 inoremap Jk <esc>
 inoremap JK <esc>
 
@@ -223,7 +239,7 @@ set nocompatible
 filetype plugin on
 
 " set font
-set guifont=Consolas:h10.5:cANSI
+set guifont=Consolas:h10:cANSI
 
 " Disable audio and visual bells (error beeps and screen flashes)
 " This must also be set in the gvimrc

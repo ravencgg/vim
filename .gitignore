@@ -1,17 +1,23 @@
-# Ignore everything
-*
-*/
+.bash_history
+.cache
+.gitconfig
+.lesshst
+.minttyrc
+.viminfo
+_viminfo
+
 
 # But not these files...
-!.gitignore
-!.vimrc
-!.gvimrc
-!vimfiles
-!vimfiles/**
+#!.gitignore
+#!.vimrc
+#!.gvimrc
+#!vimfiles
+#!vimfiles/**
 vimfiles/undo
 
 # But definitely this one
 vimfiles/.netrwhist
+.vim/.netrwhist
 
 # ...even if they are in subdirectories
 #!*/
