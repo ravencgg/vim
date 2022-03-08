@@ -85,6 +85,9 @@ nnoremap <F8> :cn<cr>
 compiler! msbuild
 "compiler! msvc
 
+" Error format for the Odin programming language
+set errorformat+=%f(%l:%c)\ %m
+
 " Keep this after compiler! to override the makeprg that it sets
 " Search for a build.bat in any parent folder and execute it
 " This file is in vimfiles/my_files but must be moved to a
@@ -350,7 +353,7 @@ function! <SID>StripTrailingWhitespaces()
     %s/\s\+$//e
     call cursor(l, c)
 endfun
-autocmd BufWritePre .vimrc,*.h,*.c,*.cpp,*.hpp,*.C,*.java,*.glsl,*.hlsl,*.lua :call <SID>StripTrailingWhitespaces()
+autocmd BufWritePre .vimrc,*.h,*.c,*.cpp,*.hpp,*.C,*.java,*.glsl,*.hlsl,*.lua,*.jai,*.odin :call <SID>StripTrailingWhitespaces()
 "End strip trailing spaces
 
 " set UTF-8 encoding
