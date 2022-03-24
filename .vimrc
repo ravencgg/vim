@@ -152,8 +152,16 @@ vnoremap <leader>/ :s/^/\/\/<cr><esc>    :noh<cr>
 vnoremap <leader><space>/ :s/\/\///<cr> :noh<cr>
 
 " Shortcut to yanking to the system clipboard
-map <leader><space>y "*y
-map <leader><space>p "*p
+" NOTE: These used to be the "* register, but + actually maps to Ctrl-C so it
+" should be more what is expected.
+nnoremap <leader>y "+y
+vnoremap <leader>y "+y
+nnoremap <leader><space>p "+p
+vnoremap <leader><space>p "+p
+" Old:
+"map <leader><space>y "*y
+"map <leader><space>p "*p
+" Unused:
 " map <leader><C-v> "*P
 
 " Start a text search
