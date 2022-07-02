@@ -14,6 +14,10 @@
 
 if has("gui_running")        " || has('nvim')
 
+    " Highlight functions in cpp files when running in GVim (used
+    " in .vim/after/syntax/cpp.vim)
+    let g:cpp_function_highlight = '1'
+
     " I would rather this go into the .gvimrc file, but that is loaded
     " too late in the initialization process, so packages have already
     " finished loading at that point.
@@ -193,6 +197,11 @@ nnoremap <leader>m :mks c:\temp\session2.vim<cr>
 """"""""""""""""""
 " LEADER KEY END "
 """"""""""""""""""
+
+" Use forward slashes for path completion on Windows
+if has('win32') || has('win64')
+    set ssl
+endif
 
 " Shift + k brings up help, which is sometimes useful, but often accidental
 map <S-k> <Nop>
