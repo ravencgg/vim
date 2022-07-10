@@ -16,7 +16,7 @@ if has("gui_running")        " || has('nvim')
 
     " Highlight functions in cpp files when running in GVim (used
     " in .vim/after/syntax/cpp.vim)
-    let g:cpp_function_highlight = '1'
+    " let g:cpp_function_highlight = '1' // NOTE: Not working
 
     " I would rather this go into the .gvimrc file, but that is loaded
     " too late in the initialization process, so packages have already
