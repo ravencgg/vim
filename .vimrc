@@ -12,15 +12,10 @@
 "    imap {<CR> {<CR>}<Up><C-o>o
 "endif
 
+" I would rather this go into the .gvimrc file, but that is loaded
+" too late in the initialization process, so packages have already
+" finished loading at that point.
 if has("gui_running")        " || has('nvim')
-
-    " Highlight functions in cpp files when running in GVim (used
-    " in .vim/after/syntax/cpp.vim)
-    " let g:cpp_function_highlight = '1' // NOTE: Not working
-
-    " I would rather this go into the .gvimrc file, but that is loaded
-    " too late in the initialization process, so packages have already
-    " finished loading at that point.
     if has('win32') || has('win64')
         set runtimepath-=~/vimfiles
         set runtimepath^=~/.vim
@@ -32,9 +27,11 @@ if has("gui_running")        " || has('nvim')
         set packpath+=~/.vim/after
     endif
 
-"    set laststatus=2
+    "set laststatus=2
     set lines=40 columns=150
+endif
 
+if filereadable(expand("~/.vim/colors/gruvbox.vim"))
     " gruvbox!
     let g:gruvbox_bold = '1'
     let g:gruvbox_undercurl = '1'
@@ -50,16 +47,26 @@ if has("gui_running")        " || has('nvim')
     nnoremap ? :let @/ = ""<CR>:call gruvbox#hls_show()<CR>?
     " !gruvbox
 
+    colorscheme gruvbox
 endif
+
+" Highlight functions in cpp files (used in .vim/after/syntax/cpp.vim)
+let g:cpp_function_highlight = '1'
+
+set background=dark
 
 if has("directx")
     set encoding=utf-8
     set renderoptions=type:directx,gamma:1.5,contrast:1.0,geom:1,renmode:4,taamode:1,level:1.0
 endif
-" ctrlp ignore directories "
-let g:ctrlp_custom_ignore = 'build\|\.obj'
 
-"set runtimepath^=~/.vim
+" ctrlp ignore directories
+" to ignore an additional directory (like 'build') use this:
+" \ 'dir': 'build\|\v[\/]\.(git|hg|svn)$',
+let g:ctrlp_custom_ignore = {
+    \ 'dir': 'build\|\v[\/]\.(git|hg|svn)$',
+    \ 'file': '\v\.(exe|so|dll|obj|lib|exp|pdb)$',
+    \ }
 
 """"""""""""""""""""""""""""""""
 " Building with batch file     "
@@ -215,6 +222,8 @@ set complete-=t
 " I think the semicolon means to search up recursively for the tags file named
 " 'tags' here.
 set tags=tags;
+
+set completeopt-=preview
 
 " There is a copy of ctags.exe in vimfiles/my_files
 " Example usage:

@@ -4,7 +4,7 @@ syn keyword cppType v2 v3 v4 m3 m4
 syn keyword cppType uint Array EmbeddedArray FixedArray ArrayView String StringView List
 syn keyword cppType std vector unordered_map
 
-if has("gui_running")
+if exists("g:cpp_function_highlight")
     syn match    cCustomParen    transparent "(" contains=cParen contains=cCppParen
     syn match    cCustomFunc     "\w\+(\@=" contains=cCustomParen
     " The \s* allows any number of spaces between the name and the parenthesis,
