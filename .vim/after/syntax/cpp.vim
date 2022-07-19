@@ -4,6 +4,9 @@ syn keyword cppType v2 v3 v4 m3 m4
 syn keyword cppType uint Array EmbeddedArray FixedArray ArrayView String StringView List
 syn keyword cppType std vector unordered_map
 
+" Highlight NOTE like TODO and FIXME in comments
+syn keyword cTodo contained NOTE
+
 if exists("g:cpp_function_highlight")
     syn match    cCustomParen    transparent "(" contains=cParen contains=cCppParen
     syn match    cCustomFunc     "\w\+(\@=" contains=cCustomParen

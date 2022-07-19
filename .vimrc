@@ -78,7 +78,13 @@ nnoremap <F6> :make<cr> :copen<cr>
 "
 " AsyncRun plugin: invoke build.bat
 let g:asyncrun_open=10
-nnoremap <C-b> :AsyncRun run_build.bat<cr>
+if has('win32') || has('win64')
+    nnoremap <C-b> :AsyncRun run_build.bat<cr>
+else
+    " Note this is not the same behavior as windows. It only runs from the
+    " current directory.
+    nnoremap <C-b> :AsyncRun ./build.sh<cr>
+endif
 
 " Map both F7 and Shift F8 to previous quickfix the
 " shift version mirrors VS, but won't work well in
@@ -87,14 +93,16 @@ nnoremap <F7> :cp<cr>
 nnoremap <S-F8> :cp<cr>
 nnoremap <F8> :cn<cr>
 
-"I _think_ this is for cl.exe:
-"set errorformat+=\\\ %#%f(%l\\\,%c):\ %m
+if has('win32') || has('win64')
+    "I _think_ this is for cl.exe:
+    "set errorformat+=\\\ %#%f(%l\\\,%c):\ %m
 
-"Error format for MSBuild
-"set errorformat=\ %#%f(%l\\\,%c):\ %m
-"This overrides the makefile program:
-compiler! msbuild
-"compiler! msvc
+    "Error format for MSBuild
+    "set errorformat=\ %#%f(%l\\\,%c):\ %m
+    "This overrides the makefile program:
+    compiler! msbuild
+    "compiler! msvc
+endif
 
 " Error format for the Odin programming language
 set errorformat+=%f(%l:%c)\ %m
