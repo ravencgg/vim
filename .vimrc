@@ -51,7 +51,7 @@ if filereadable(expand("~/.vim/colors/gruvbox.vim"))
 endif
 
 " Highlight functions in cpp files (used in .vim/after/syntax/cpp.vim)
-let g:cpp_function_highlight = '1'
+let g:c_function_highlight = '1'
 
 set background=dark
 
