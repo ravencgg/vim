@@ -77,6 +77,7 @@ nnoremap <F6> :make<cr> :copen<cr>
 " nnoremap <C-b> :make<cr>
 "
 " AsyncRun plugin: invoke build.bat
+" NOTE: use :AsyncStop to stop a build
 let g:asyncrun_open=10
 if has('win32') || has('win64')
     nnoremap <C-b> :AsyncRun run_build.bat<cr>
