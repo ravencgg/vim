@@ -39,6 +39,7 @@ if filereadable(expand("~/.vim/colors/gruvbox.vim"))
     "let g:gruvbox_contrast_dark = 'soft'
     "let g:gruvbox_contrast_dark = 'medium'
     let g:gruvbox_contrast_dark = 'hard'
+    let g:gruvbox_contrast_light = 'medium'
     nnoremap <silent> [oh :call gruvbox#hls_show()<CR>
     nnoremap <silent> ]oh :call gruvbox#hls_hide()<CR>
     nnoremap <silent> coh :call gruvbox#hls_toggle()<CR>
@@ -78,8 +79,10 @@ nnoremap <F6> :make<cr> :copen<cr>
 "
 " AsyncRun plugin: invoke build.bat
 " NOTE: use :AsyncStop to stop a build
+" NOTE: has('win32unix') returns true for vim running in git bash< win32 and
+" win64 return false in that environment
 let g:asyncrun_open=10
-if has('win32') || has('win64')
+if has('win32') || has('win64') || has('win32unix')
     nnoremap <C-b> :AsyncRun run_build.bat<cr>
 else
     " Note this is not the same behavior as windows. It only runs from the
@@ -135,14 +138,21 @@ nnoremap <leader>[ :vertical resize -10<cr>
 nnoremap <leader><space>] :vertical resize +40<cr>
 nnoremap <leader><space>[ :vertical resize -40<cr>
 
-" Center the screen on the cursor
-nnoremap <leader>c :normal zz<cr>
+" Center the screen on the cursor, removed to use the keybind for buffer
+" deletion
+" nnoremap <leader>c :normal zz<cr>
 
 " Save with w
 nnoremap <leader>w :w<cr>
 
 " Close current window, won't close program
 nnoremap <leader>q :close<cr>
+
+" Delete the current buffer, and return to the previous file
+nnoremap <leader>c :bp\|bd #<cr>
+
+" Sort the current paragraph, useful for sorting a list of included files
+nnoremap <leader>x vip:sort<cr>
 
 " Show the current working directory
 nnoremap <leader>p :pwd<cr>
