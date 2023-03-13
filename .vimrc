@@ -97,7 +97,7 @@ nnoremap <F7> :cp<cr>
 nnoremap <S-F8> :cp<cr>
 nnoremap <F8> :cn<cr>
 
-if has('win32') || has('win64')
+if has('win32') || has('win64') || has('win32unix')
     "I _think_ this is for cl.exe:
     "set errorformat+=\\\ %#%f(%l\\\,%c):\ %m
 
