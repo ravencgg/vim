@@ -287,7 +287,7 @@ set nocompatible
 filetype plugin on
 
 " set font
-set guifont=Consolas:h10:cANSI
+set guifont=Consolas:h11:cANSI
 
 " Disable audio and visual bells (error beeps and screen flashes)
 " This must also be set in the gvimrc

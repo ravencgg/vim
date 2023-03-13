@@ -15,7 +15,7 @@ if exists("g:c_function_highlight")
     " This colors functions with orange in gruvbox
     hi def link cCustomFunc Special
 
-    syn keyword cDefine NO_DISCARD BIT Defer VALIDATE VALIDATE_V countof arrsize assert ASSERT VERIFY REF
+    syn keyword cDefine NO_DISCARD BIT Defer VALIDATE VALIDATE_V countof arrsize assert ASSERT VERIFY REF BREAK_ONCE
     syn keyword cDefine META_FIELD META_STRUCT META_ENUM INVALID_INDEX CVAR countof arrsize assert VA
 
     "  Color defines with the Macro color
