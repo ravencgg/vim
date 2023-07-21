@@ -318,6 +318,11 @@ set undoreload=10000
 " Better command-line completion
 set wildmenu
 
+if v:version >= 900
+    " Vertical command-line completion list (vim 9 feature)
+    set wildoptions+=pum
+endif
+
 " Allow backspacing over autoindent, line breaks and start of insert action
 " set backspace=indent,eol,start
 set backspace=indent,start
@@ -400,6 +405,16 @@ function! <SID>StripTrailingWhitespaces()
 endfun
 autocmd BufWritePre .vimrc,*.h,*.c,*.cpp,*.hpp,*.C,*.java,*.glsl,*.hlsl,*.lua,*.jai,*.odin :call <SID>StripTrailingWhitespaces()
 "End strip trailing spaces
+
+" Delete buffers that aren't visible
+function DeleteHiddenBuffers()
+    let tpbl=[]
+    call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
+    for buf in filter(range(1, bufnr('$')), 'bufexists(v:val) && index(tpbl, v:val)==-1')
+        silent execute 'bwipeout' buf
+    endfor
+endfunction
+"
 
 " set UTF-8 encoding
 set enc=utf-8
