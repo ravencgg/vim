@@ -311,7 +311,7 @@ set nowrap
 " Persistent undo
 " Be sure to create the undodir directory!!
 set undofile
-set undodir=$HOME/vimfiles/undo
+set undodir=$HOME/.vim/undo
 set undolevels=1000
 set undoreload=10000
 
