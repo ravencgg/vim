@@ -14,6 +14,10 @@ _viminfo
 #!vimfiles
 #!vimfiles/**
 vimfiles/undo
+.vim/undo
+.dbus-keyrings/
+.gtk-bookmarks
+
 
 # But definitely this one
 vimfiles/.netrwhist
