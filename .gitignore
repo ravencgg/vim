@@ -15,6 +15,7 @@ _viminfo
 #!vimfiles/**
 vimfiles/undo
 .vim/undo
+.vim/nvim_undo
 .dbus-keyrings/
 .gtk-bookmarks
 

@@ -31,22 +31,26 @@ if has("gui_running")        " || has('nvim')
     set lines=40 columns=150
 endif
 
+if (has('nvim'))
+    cd C:\Projects
+endif
+
+" configure and enable gruvbox
 if filereadable(expand("~/.vim/colors/gruvbox.vim"))
-    " gruvbox!
     let g:gruvbox_bold = '1'
     let g:gruvbox_undercurl = '1'
     let g:gruvbox_vert_split = 'bg4'
     "let g:gruvbox_contrast_dark = 'soft'
     "let g:gruvbox_contrast_dark = 'medium'
     let g:gruvbox_contrast_dark = 'hard'
-    let g:gruvbox_contrast_light = 'medium'
+    let g:gruvbox_contrast_light = 'hard'
     nnoremap <silent> [oh :call gruvbox#hls_show()<CR>
     nnoremap <silent> ]oh :call gruvbox#hls_hide()<CR>
     nnoremap <silent> coh :call gruvbox#hls_toggle()<CR>
+
     nnoremap * :let @/ = ""<CR>:call gruvbox#hls_show()<CR>*
     nnoremap / :let @/ = ""<CR>:call gruvbox#hls_show()<CR>/
     nnoremap ? :let @/ = ""<CR>:call gruvbox#hls_show()<CR>?
-    " !gruvbox
 
     colorscheme gruvbox
 endif
@@ -54,11 +58,20 @@ endif
 " Highlight functions in cpp files (used in .vim/after/syntax/cpp.vim)
 let g:c_function_highlight = '1'
 
+" Default to dark theme
 set background=dark
+function! ToggleBackground()
+    let &background = ( &background == "dark"? "light" : "dark" )
+    if exists("g:colors_name")
+        exe "colorscheme " . g:colors_name
+    endif
+endfunction
+
 
 if has("directx")
     set encoding=utf-8
-    set renderoptions=type:directx,gamma:1.5,contrast:1.0,geom:1,renmode:4,taamode:1,level:1.0
+    "set renderoptions=type:directx,gamma:1.5,contrast:1.0,geom:1,renmode:4,taamode:1,level:1.0
+    set renderoptions=type:directx,gamma:1.8,contrast:0.5,geom:1,renmode:5,taamode:1,level:0.5
 endif
 
 " ctrlp ignore directories
@@ -111,6 +124,9 @@ endif
 " Error format for the Odin programming language
 set errorformat+=%f(%l:%c)\ %m
 
+" This is for cl.exe:
+set errorformat+=\\\ %#%f(%l):\ %m
+
 " Keep this after compiler! to override the makeprg that it sets
 " Search for a build.bat in any parent folder and execute it
 " This file is in vimfiles/my_files but must be moved to a
@@ -121,6 +137,9 @@ set makeprg=run_build.bat
 " LEADER KEY BEGIN "
 """"""""""""""""""""
 map <space> <leader>
+
+" Toggle background between dark and light
+nnoremap <leader>b :call ToggleBackground()<cr>
 
 " Resize vertical splits
 nnoremap <leader>= :resize +10<cr>
@@ -286,8 +305,8 @@ set nocompatible
 " Allow plugins
 filetype plugin on
 
-" set font
-set guifont=Consolas:h11:cANSI
+" Set font. This is a list that VIM will use as fallbacks.
+set guifont=Lucida_Console:h11:cANSI:qDRAFT,Roboto\ Mono:h11:cANSI,Consolas:h11:cANSI
 
 " Disable audio and visual bells (error beeps and screen flashes)
 " This must also be set in the gvimrc
@@ -311,7 +330,11 @@ set nowrap
 " Persistent undo
 " Be sure to create the undodir directory!!
 set undofile
-set undodir=$HOME/.vim/undo
+if (has('nvim'))
+    set undodir=$HOME/.vim/nvim_undo
+else
+    set undodir=$HOME/.vim/undo
+endif
 set undolevels=1000
 set undoreload=10000
 
@@ -404,6 +427,8 @@ function! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfun
 autocmd BufWritePre .vimrc,*.h,*.c,*.cpp,*.hpp,*.C,*.java,*.glsl,*.hlsl,*.lua,*.jai,*.odin :call <SID>StripTrailingWhitespaces()
+" NOTE: do :autocmd! BufWritePre
+" to disable this trailing whitespace stripping for the current Vim
 "End strip trailing spaces
 
 " Delete buffers that aren't visible

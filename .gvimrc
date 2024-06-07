@@ -8,6 +8,7 @@ cd C:\Projects
 "colorscheme badwolf
 "colorscheme molokai
 colorscheme gruvbox
+colorscheme quiet
 
 " Save file from insert mode
 inoremap <C-s> <esc>:w<CR>
