@@ -1,4 +1,3 @@
-"
 """"""""""""""""""""""""""""""""
 " Plugin Management            "
 """"""""""""""""""""""""""""""""
@@ -37,6 +36,15 @@ endif
 
 " configure and enable gruvbox
 if filereadable(expand("~/.vim/colors/gruvbox.vim"))
+
+    " Disable italics helps non-Consolas fonts render correctly. Others render
+    " out of the bounding box and cause pixels to be incorrect until redrawn.
+    if (!has('nvim'))
+        " neovim handles rendering glyphs outside of their bounding rect
+        " better, which helps with rendering italics.
+        let g:gruvbox_italic=0
+    endif
+
     let g:gruvbox_bold = '1'
     let g:gruvbox_undercurl = '1'
     let g:gruvbox_vert_split = 'bg4'
@@ -66,6 +74,38 @@ function! ToggleBackground()
         exe "colorscheme " . g:colors_name
     endif
 endfunction
+
+" More natural movement when wrapping is enabled
+" Must use :call ToggleWrap() to toggle instead of 'set wrap'
+let s:wrapenabled = 0
+function! ToggleWrap()
+  set wrap nolist
+  if s:wrapenabled
+    set nolinebreak
+    unmap j
+    unmap k
+    unmap 0
+    unmap ^
+    unmap $
+    let s:wrapenabled = 0
+  else
+    set linebreak
+    nnoremap j gj
+    nnoremap k gk
+    nnoremap 0 g0
+    nnoremap ^ g^
+    nnoremap $ g$
+    vnoremap j gj
+    vnoremap k gk
+    vnoremap 0 g0
+    vnoremap ^ g^
+    vnoremap $ g$
+    let s:wrapenabled = 1
+  endif
+endfunction
+" This seems to be missing something when toggling, setwrap doesn't always get
+" applied correctly.
+" map <leader>w :call ToggleWrap()<CR>
 
 
 if has("directx")
@@ -139,7 +179,8 @@ set makeprg=run_build.bat
 map <space> <leader>
 
 " Toggle background between dark and light
-nnoremap <leader>b :call ToggleBackground()<cr>
+nnoremap <leader><space>b :call ToggleBackground()<cr>
+nnoremap <leader>b :ls<cr>:b<space>
 
 " Resize vertical splits
 nnoremap <leader>= :resize +10<cr>
@@ -306,7 +347,13 @@ set nocompatible
 filetype plugin on
 
 " Set font. This is a list that VIM will use as fallbacks.
-set guifont=Lucida_Console:h11:cANSI:qDRAFT,Roboto\ Mono:h11:cANSI,Consolas:h11:cANSI
+if (has('nvim'))
+    "Inconsolata:h12:cANSI:qDRAFT,
+    set guifont=Lucida\ Console:h11:cANSI:qDRAFT,Roboto\ Mono:h11:cANSI,Consolas:h11:cANSI
+else
+    " Interesting, but hard to get working correctlY: ProggyCleanTTF:h12:cANSI:qDRAFT,
+    set guifont=Lucida_Console:h11:cANSI:qDRAFT,Roboto\ Mono:h11:cANSI,Consolas:h11:cANSI
+endif
 
 " Disable audio and visual bells (error beeps and screen flashes)
 " This must also be set in the gvimrc
@@ -324,8 +371,8 @@ set nowrap
 " Change working directory to the currently opened file's directory
 " set autochdir
 
-" Allow switching from an unsaved buffer
-" set hidden
+" Don't allow switching from an unsaved buffer
+set nohidden
 
 " Persistent undo
 " Be sure to create the undodir directory!!
@@ -420,13 +467,13 @@ vnoremap <Tab> > gv
 vnoremap <S-Tab> < gv
 
 " Strip trailing whitespace on save
-function! <SID>StripTrailingWhitespaces()
+function! StripTrailingWhitespaces()
     let l = line(".")
     let c = col(".")
     %s/\s\+$//e
     call cursor(l, c)
 endfun
-autocmd BufWritePre .vimrc,*.h,*.c,*.cpp,*.hpp,*.C,*.java,*.glsl,*.hlsl,*.lua,*.jai,*.odin :call <SID>StripTrailingWhitespaces()
+autocmd BufWritePre .vimrc,*.h,*.c,*.cpp,*.hpp,*.C,*.java,*.glsl,*.hlsl,*.lua,*.jai,*.odin :call StripTrailingWhitespaces()
 " NOTE: do :autocmd! BufWritePre
 " to disable this trailing whitespace stripping for the current Vim
 "End strip trailing spaces
