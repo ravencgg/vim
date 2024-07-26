@@ -34,7 +34,7 @@ if (has('nvim'))
     cd C:\Projects
 endif
 
-" configure gruvbox (enabled in gvimrc)
+" configure gruvbox
 if filereadable(expand("~/.vim/colors/gruvbox.vim"))
 
     " Disable italics helps non-Consolas fonts render correctly. Others render
@@ -55,6 +55,8 @@ if filereadable(expand("~/.vim/colors/gruvbox.vim"))
     nnoremap * :let @/ = ""<CR>:call gruvbox#hls_show()<CR>*
     nnoremap / :let @/ = ""<CR>:call gruvbox#hls_show()<CR>/
     nnoremap ? :let @/ = ""<CR>:call gruvbox#hls_show()<CR>?
+
+    colorscheme gruvbox
 endif
 
 " Highlight functions in cpp files (used in .vim/after/syntax/cpp.vim)
