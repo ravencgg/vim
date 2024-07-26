@@ -34,16 +34,12 @@ if (has('nvim'))
     cd C:\Projects
 endif
 
-" configure and enable gruvbox
+" configure gruvbox (enabled in gvimrc)
 if filereadable(expand("~/.vim/colors/gruvbox.vim"))
 
     " Disable italics helps non-Consolas fonts render correctly. Others render
     " out of the bounding box and cause pixels to be incorrect until redrawn.
-    if (!has('nvim'))
-        " neovim handles rendering glyphs outside of their bounding rect
-        " better, which helps with rendering italics.
-        let g:gruvbox_italic=0
-    endif
+    let g:gruvbox_italic=0
 
     let g:gruvbox_bold = '1'
     let g:gruvbox_undercurl = '1'
@@ -59,8 +55,6 @@ if filereadable(expand("~/.vim/colors/gruvbox.vim"))
     nnoremap * :let @/ = ""<CR>:call gruvbox#hls_show()<CR>*
     nnoremap / :let @/ = ""<CR>:call gruvbox#hls_show()<CR>/
     nnoremap ? :let @/ = ""<CR>:call gruvbox#hls_show()<CR>?
-
-    colorscheme gruvbox
 endif
 
 " Highlight functions in cpp files (used in .vim/after/syntax/cpp.vim)
@@ -226,7 +220,8 @@ nnoremap <leader>ld :lcd %:p:h<cr>
                         " nnoremap <leader>sd :set path=%:p:h<cr>
 
 " Set up to run a command in a new process
-nnoremap <leader>r :silent ! start<space>
+" NOTE: To open a file this way on Windows, use backslashes
+nnoremap <leader>r :silent !start<space>
 
 " Run a terminal in the current directory
 " DEPRECATED: Using vim's new :terminal mode in 8.1
