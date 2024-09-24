@@ -2,7 +2,7 @@
 " Highlight NOTE like TODO and FIXME in comments
 syn keyword cTodo contained NOTE
 
-syn keyword cType uint uint8 uint16 uint32 uint64 int8 int16 int32 int64 bool32 b32
+syn keyword cType uint uint8 uint16 uint32 uint64 int8 int16 int32 int64 bool32 b32 bool8 b8
 syn keyword cType u8 u16 u32 u64 s8 s16 s32 s64 f32 f64
 syn keyword cType v2 v3 v4 m3 m4 v2s v3s v4s
 

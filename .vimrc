@@ -122,7 +122,7 @@ let g:ctrlp_custom_ignore = {
 " Building with batch file     "
 """"""""""""""""""""""""""""""""
 
-nnoremap <F6> :make<cr> :copen<cr>
+" nnoremap <F6> :make<cr> :copen<cr>
 
 " nnoremap <C-b> :make<cr>
 "
@@ -254,6 +254,15 @@ vnoremap <leader><space>p "+p
 " Start a text search
 nnoremap <leader>/ :vimgrep // **/*<Left><Left><Left><Left><Left><Left>
 
+" Use ripgrep as the grep program, must be visible in the PATH somewhere
+" (callable as 'rg'). This populates the quickfix window in a similar manner
+" as vimgrep. The only downside to this that I know of is Ctrl-C won't cancel
+" the search, you have to close the terminal window that opened.
+if executable("rg")
+    set grepprg=rg\ --vimgrep\ --no-heading
+    set grepformat=%f:%l:%c:%m,%f:%l:%m
+endif
+
 " Start a file search (use <tab>, not <cr>!)
 nnoremap <leader>f :e **/
 
@@ -345,8 +354,8 @@ filetype plugin on
 
 " Set font. This is a list that VIM will use as fallbacks.
 if (has('nvim'))
-    "Inconsolata:h12:cANSI:qDRAFT,
-    set guifont=Lucida\ Console:h11:cANSI:qDRAFT,Roboto\ Mono:h11:cANSI,Consolas:h11:cANSI
+    " set guifont=Inconsolata:h12:cANSI:qDRAFT,
+    set guifont=Lucida\ Console:h12:cANSI:qDRAFT,Roboto\ Mono:h11:cANSI,Consolas:h11:cANSI
 else
     " Interesting, but hard to get working correctlY: ProggyCleanTTF:h12:cANSI:qDRAFT,
     set guifont=Lucida_Console:h11:cANSI:qDRAFT,Roboto\ Mono:h11:cANSI,Consolas:h11:cANSI
@@ -510,4 +519,3 @@ set comments=sl:/*,mb:\ *,elx:\ */
 
 " switch between header/source with F4
 map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
-
