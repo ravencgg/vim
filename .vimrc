@@ -321,6 +321,10 @@ set completeopt-=preview
 " Y functions like D, yanking until the end of the line
 nnoremap Y y$
 
+" Control ] is jump to tag. Add a zz at the end of it to always center the
+" screen on the tag after jumping
+nnoremap <C-]> <C-]>zz
+
 " hitting j k in insert mode will hit return to normal mode
 inoremap jk <esc>
 inoremap jK <esc>
