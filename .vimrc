@@ -258,6 +258,8 @@ nnoremap <leader>/ :vimgrep // **/*<Left><Left><Left><Left><Left><Left>
 " (callable as 'rg'). This populates the quickfix window in a similar manner
 " as vimgrep. The only downside to this that I know of is Ctrl-C won't cancel
 " the search, you have to close the terminal window that opened.
+" :grep search_string
+" Put the search string in double quotes to search for multiple words
 if executable("rg")
     set grepprg=rg\ --vimgrep\ --no-heading
     set grepformat=%f:%l:%c:%m,%f:%l:%m
