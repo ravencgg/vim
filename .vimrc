@@ -136,7 +136,10 @@ if has('win32') || has('win64') || has('win32unix')
 else
     " Note this is not the same behavior as windows. It only runs from the
     " current directory.
-    nnoremap <C-b> :AsyncRun ./build.sh<cr>
+    " nnoremap <C-b> :AsyncRun ./build.sh<cr>
+    " This is the new behavior that works like the windows version. I put
+    " run_build.sh in /urs/local/bin so it is in the path
+    nnoremap <C-b> :AsyncRun run_build.sh<cr>
 endif
 
 " Map both F7 and Shift F8 to previous quickfix the
