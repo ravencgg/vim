@@ -330,6 +330,15 @@ nnoremap Y y$
 " screen on the tag after jumping
 nnoremap <C-]> <C-]>zz
 
+" This overrides the default [[ behavior that jumps to the closest { that is
+" unindented above the cursor. That is useful to jump to the start of a
+" function, but doesn't work if the opening bracket is on the same line:
+" void foo() {
+" }
+" Switching to this feels the same (unless it's nested more than the number
+" here), but works regardless since it is operating on scope.
+nnoremap [[ 20[{
+
 " hitting j k in insert mode will hit return to normal mode
 inoremap jk <esc>
 inoremap jK <esc>

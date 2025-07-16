@@ -16,7 +16,7 @@ if exists("g:c_function_highlight")
     hi def link cCustomFunc Special
 
     syn keyword cDefine NO_DISCARD BIT Defer VALIDATE VALIDATE_V countof arrsize assert ASSERT ASSERT_ONCE VERIFY REF BREAK_ONCE
-    syn keyword cDefine META_FIELD META_STRUCT META_ENUM INVALID_INDEX CVAR DEBUG_CVAR countof arrsize assert VA
+    syn keyword cDefine META_FIELD META_STRUCT META_ENUM INVALID_INDEX CVAR countof arrsize assert VA LIKELY UNLIKELY
 
     "  Color defines with the Macro color
     hi def link cDefine Macro
