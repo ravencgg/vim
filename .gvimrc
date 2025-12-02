@@ -21,16 +21,16 @@ nnoremap <silent> <C-S> :w<CR>
 imap {<CR> {<CR>}<Up><C-o>o
 
 "remove menu bar
-:set guioptions-=m
+set guioptions-=m
 
 "remove toolbar
-:set guioptions-=T  
+set guioptions-=T
 
 "remove right-hand scroll bar
-:set guioptions-=r  
+set guioptions-=r
 
 "remove left-hand scroll bar
-:set guioptions-=L  
+set guioptions-=L
 
 " remove visual bells from GVIM -> Duplicated from .vimrc
 set t_vb=

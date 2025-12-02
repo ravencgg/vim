@@ -34,6 +34,15 @@ if (has('nvim'))
     cd C:\Projects
 endif
 
+" MacVim doesn't read the gvimrc, so we do setup here:
+if (has('gui_macvim'))
+    "remove right-hand scroll bar
+    set guioptions-=r
+
+    "remove left-hand scroll bar
+    set guioptions-=L
+endif
+
 " configure gruvbox
 if filereadable(expand("~/.vim/colors/gruvbox.vim"))
 
