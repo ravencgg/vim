@@ -36,6 +36,7 @@ endif
 
 " MacVim doesn't read the gvimrc, so we do setup here:
 if (has('gui_macvim'))
+    cd ~/projects
     "remove right-hand scroll bar
     set guioptions-=r
 
@@ -147,7 +148,7 @@ else
     " current directory.
     " nnoremap <C-b> :AsyncRun ./build.sh<cr>
     " This is the new behavior that works like the windows version. I put
-    " run_build.sh in /urs/local/bin so it is in the path
+    " run_build.sh in /usr/local/bin so it is in the path
     nnoremap <C-b> :AsyncRun run_build.sh<cr>
 endif
 
@@ -381,13 +382,15 @@ filetype plugin on
 
 " Set font. This is a list that VIM will use as fallbacks.
 " TODO: Should this be in the gvimrc?
-if has('unix')
+if (has('gui_macvim'))
+    set guifont=Menlo:h13
+elseif has('unix')
     set guifont=Lucida\ Console\ Semi-Condensed\ 11
 elseif has('nvim')
     " set guifont=Inconsolata:h12:cANSI:qDRAFT,
     set guifont=Lucida\ Console:h12:cANSI:qDRAFT,Roboto\ Mono:h11:cANSI,Consolas:h11:cANSI
 else
-    " Interesting, but hard to get working correctlY: ProggyCleanTTF:h12:cANSI:qDRAFT,
+    " Interesting, but hard to get working correctly: ProggyCleanTTF:h12:cANSI:qDRAFT,
     set guifont=Lucida_Console:h11:cANSI:qDRAFT,Roboto\ Mono:h11:cANSI,Consolas:h11:cANSI
 endif
 
@@ -509,7 +512,7 @@ function! StripTrailingWhitespaces()
     %s/\s\+$//e
     call cursor(l, c)
 endfun
-autocmd BufWritePre .vimrc,*.h,*.c,*.cpp,*.hpp,*.C,*.java,*.glsl,*.hlsl,*.lua,*.jai,*.odin :call StripTrailingWhitespaces()
+autocmd BufWritePre .vimrc,*.h,*.c,*.cpp,*.hpp,*.C,*.java,*.glsl,*.hlsl,*.lua,*.jai,*.odin,*.m,*.mm :call StripTrailingWhitespaces()
 " NOTE: do :autocmd! BufWritePre
 " to disable this trailing whitespace stripping for the current Vim
 "End strip trailing spaces
