@@ -380,7 +380,10 @@ set nocompatible
 filetype plugin on
 
 " Set font. This is a list that VIM will use as fallbacks.
-if (has('nvim'))
+" TODO: Should this be in the gvimrc?
+if has('unix')
+    set guifont=Lucida\ Console\ Semi-Condensed\ 11
+elseif has('nvim')
     " set guifont=Inconsolata:h12:cANSI:qDRAFT,
     set guifont=Lucida\ Console:h12:cANSI:qDRAFT,Roboto\ Mono:h11:cANSI,Consolas:h11:cANSI
 else
