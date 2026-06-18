@@ -5,6 +5,7 @@ syn keyword cTodo contained NOTE nocheckin
 syn keyword cType uint uint8 uint16 uint32 uint64 int8 int16 int32 int64 bool32 b32 bool8 b8
 syn keyword cType u8 u16 u32 u64 s8 s16 s32 s64 f32 f64
 syn keyword cType v2 v3 v4 m3 m4 v2s v3s v4s
+syn keyword cType float2 float3 float4 float4x4 float3x3 float3x4 float4x3
 
 if exists("g:c_function_highlight")
     syn match    cCustomParen    transparent "(" contains=cParen contains=cCppParen

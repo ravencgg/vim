@@ -310,6 +310,10 @@ if has('win32') || has('win64')
     set ssl
 endif
 
+" Keep the cursor this many lines from the top or bottom of the screen when
+" scrolling
+"set scrolloff=5
+
 " Shift + k brings up help, which is sometimes useful, but often accidental
 map <S-k> <Nop>
 
@@ -347,7 +351,9 @@ nnoremap <C-]> <C-]>zz
 " }
 " Switching to this feels the same (unless it's nested more than the number
 " here), but works regardless since it is operating on scope.
-nnoremap [[ 20[{
+" NOTE: Doesn't work in vsvim
+" NOTE: Doesn't work well anywhere
+" nnoremap [[ 20[{
 
 " hitting j k in insert mode will hit return to normal mode
 inoremap jk <esc>
