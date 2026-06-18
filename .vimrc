@@ -11,27 +11,17 @@
 "    imap {<CR> {<CR>}<Up><C-o>o
 "endif
 
-" I would rather this go into the .gvimrc file, but that is loaded
-" too late in the initialization process, so packages have already
-" finished loading at that point.
-if has("gui_running")        " || has('nvim')
-    if has('win32') || has('win64')
-        set runtimepath-=~/vimfiles
-        set runtimepath^=~/.vim
-        set runtimepath-=~/vimfiles/after
-        set runtimepath+=~/.vim/after
-        set packpath-=~/vimfiles
-        set packpath^=~/.vim
-        set packpath-=~/vimfiles/after
-        set packpath+=~/.vim/after
-    endif
-
-    "set laststatus=2
-    set lines=40 columns=150
-endif
-
-if (has('nvim'))
-    cd C:\Projects
+" Tell vim to look at the .vim folder instead of vimfiles, this makes it
+" consistent across platforms.
+if has('win32') || has('win64')
+    set runtimepath-=~/vimfiles
+    set runtimepath^=~/.vim
+    set runtimepath-=~/vimfiles/after
+    set runtimepath+=~/.vim/after
+    set packpath-=~/vimfiles
+    set packpath^=~/.vim
+    set packpath-=~/vimfiles/after
+    set packpath+=~/.vim/after
 endif
 
 " MacVim doesn't read the gvimrc, so we do setup here:
@@ -44,9 +34,13 @@ if (has('gui_macvim'))
     set guioptions-=L
 endif
 
+if has("gui_running")        " || has('nvim')
+    "set laststatus=2
+    set lines=40 columns=150
+endif
+
 " configure gruvbox
 if filereadable(expand("~/.vim/colors/gruvbox.vim"))
-
     " Disable italics helps non-Consolas fonts render correctly. Others render
     " out of the bounding box and cause pixels to be incorrect until redrawn.
     let g:gruvbox_italic=0
@@ -67,6 +61,10 @@ if filereadable(expand("~/.vim/colors/gruvbox.vim"))
     nnoremap ? :let @/ = ""<CR>:call gruvbox#hls_show()<CR>?
 
     colorscheme gruvbox
+else
+    " Set the retrobox colorscheme if we don't have gruvbox, but ignore an
+    " error if it doesn't exist.
+    silent! colorscheme retrobox
 endif
 
 " Highlight functions in cpp files (used in .vim/after/syntax/cpp.vim)
@@ -403,6 +401,9 @@ endif
 " Disable audio and visual bells (error beeps and screen flashes)
 " This must also be set in the gvimrc
 set vb t_vb=
+set t_vb=
+set novisualbell
+set belloff=all
 
 " Highlight the current line of text
 set cursorline
