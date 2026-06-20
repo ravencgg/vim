@@ -557,5 +557,11 @@ set showmatch
 " intelligent comments
 set comments=sl:/*,mb:\ *,elx:\ */
 
+" CMake files have no syntax sync readback, which messes up syntax
+" highlighting a lot, especially for lists of files. Can also use fromstart
+" instead if this is not enough:
+" syntax sync fromstart
+autocmd BufRead,BufNewFile CMakeLists.txt,*.cmake syntax sync minlines=100
+
 " switch between header/source with F4
 map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
